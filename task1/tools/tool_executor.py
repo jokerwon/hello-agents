@@ -1,0 +1,37 @@
+from typing import Any, Callable, Dict, Optional
+
+ToolFunc = Callable[..., Any]
+
+
+class ToolExecutor:
+    """
+    一个工具执行器，负责管理和执行工具。
+    """
+
+    def __init__(self) -> None:
+        self.tools: Dict[str, Dict[str, Any]] = {}
+
+    def registerTool(self, name: str, description: str, func: ToolFunc) -> None:
+        """
+        向工具箱中注册一个新工具。
+        """
+        if name in self.tools:
+            print(f"警告:工具 '{name}' 已存在，将被覆盖。")
+        self.tools[name] = {"description": description, "func": func}
+        print(f"工具 '{name}' 已注册。")
+
+    def getTool(self, name: str) -> Optional[ToolFunc]:
+        """
+        根据名称获取一个工具的执行函数。
+        工具不存在时返回 None。
+        """
+        tool = self.tools.get(name)
+        return tool["func"] if tool is not None else None
+
+    def getAvailableTools(self) -> str:
+        """
+        获取所有可用工具的格式化描述字符串。
+        """
+        return "\n".join(
+            [f"- {name}: {info['description']}" for name, info in self.tools.items()]
+        )
