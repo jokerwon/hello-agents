@@ -9,7 +9,6 @@ from tools.get_weather import get_weather
 from tools.get_attraction import get_attraction
 
 load_dotenv()
-os.environ.setdefault("no_proxy", "iwhalecloud.com")  # 本地代理(127.0.0.1:7890)无法转发该域名，强制直连
 
 AGENT_SYSTEM_PROMPT = """
 你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。

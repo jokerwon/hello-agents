@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from openai.types.chat import ChatCompletionMessageParam
 
-os.environ.setdefault("no_proxy", "iwhalecloud.com")
 # 加载 .env 文件中的环境变量
 load_dotenv()
 
